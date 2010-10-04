@@ -60,26 +60,36 @@
     </head>
     <body>
         
-        <div id="header" class="block success">
+        <div id="header" class="block failed">
             <h1>
                 ApplicationTest.class
             </h1>
             <p>
-                SUCCESS
+                FAILED
             </p>
         </div>
         
         <div id="results">
             <table>
                                 <tr>
-                    <td width="20%" class="passed" valign="top">
+                    <td width="20%" class="failed" valign="top">
                         <span>testThatIndexPageWorks</span>
                     </td>
-                    <td class="" valign="top">
-                                                                        Ok
-                                            </td>
+                    <td class="error" valign="top">
+                                                <strong>Failure, Response status  expected:&lt;200&gt; but was:&lt;302&gt;</strong>
+                                                <div class="source">
+                            <span>In /test/ApplicationTest.java, line 12 :</span>
+                        </div>
+                        <div class="sourceLine">
+                            <span>
+                                
+                                            assertIsOk(response);
+                                
+                            </span>
+                        </div>
+                                                                                                                    </td>
                     <td width="5%" align="right" class="time" valign="top">
-                        141 ms
+                        56 ms
                     </td>
                 </tr>
                             </table>

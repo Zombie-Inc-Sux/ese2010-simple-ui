@@ -1,6 +1,7 @@
 package models;
 
 import java.util.*;
+
 import javax.persistence.*;
 
 import controllers.Secure;
@@ -23,6 +24,9 @@ public class Question extends Model {
     
     @OneToMany(mappedBy="question", cascade=CascadeType.ALL)
     public List<Answer> answers;
+    
+    @ManyToMany
+	public Map<User,Vote> votes;
 
     public Question(User author, String title, String content) {
         this.author = author;

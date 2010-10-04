@@ -1,6 +1,7 @@
 package models;
 
 import java.util.*;
+
 import javax.persistence.*;
 
 import controllers.Secure;
@@ -20,6 +21,9 @@ public class Answer extends Model {
     
     @ManyToOne
     public Question question;
+    
+    @ManyToMany
+	public Map<User,Vote> votes;
     
     public Answer(Question question, String author, String content) {
         this.question = question;
