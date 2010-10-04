@@ -1,0 +1,50 @@
+04 Oct 2010 13:57:38,302 INFO  ~ Starting /home/d3orn/d3orn/play-1.0.3.2/qa
+04 Oct 2010 13:57:39,038 INFO  ~ 
+04 Oct 2010 13:57:39,039 INFO  ~ Go to http://localhost:9000/@tests to run the tests
+04 Oct 2010 13:57:39,039 INFO  ~ 
+04 Oct 2010 13:57:39,039 WARN  ~ You're running Play! in DEV mode
+04 Oct 2010 13:57:39,153 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+04 Oct 2010 13:57:41,267 INFO  ~ Connected to jdbc:hsqldb:mem:playembed
+04 Oct 2010 13:57:41,988 INFO  ~ Application 'qa' is now started !
+04 Oct 2010 13:57:42,433 ERROR ~ 
+
+@643endco7
+Error during job execution (Bootstrap)
+
+Java exception (In /app/Bootstrap.java around line 13)
+RuntimeException occured : Cannot load fixture initial-data.yml: No previous reference found for object of type models.Question with id firstBobQuestion
+
+play.exceptions.JavaExecutionException: Cannot load fixture initial-data.yml: No previous reference found for object of type models.Question with id firstBobQuestion
+	at play.jobs.Job.call(Job.java:119)
+	at Invocation.Job(Play!)
+Caused by: java.lang.RuntimeException: Cannot load fixture initial-data.yml: No previous reference found for object of type models.Question with id firstBobQuestion
+	at play.test.Fixtures.load(Fixtures.java:199)
+	at Bootstrap.doJob(Bootstrap.java:13)
+	at play.jobs.Job.doJobWithResult(Job.java:37)
+	at play.jobs.Job.call(Job.java:110)
+	... 1 more
+Caused by: java.lang.RuntimeException: No previous reference found for object of type models.Question with id firstBobQuestion
+	at play.test.Fixtures.resolveDependencies(Fixtures.java:261)
+	at play.test.Fixtures.load(Fixtures.java:163)
+	... 4 more
+04 Oct 2010 13:57:42,993 ERROR ~ 
+
+@643endco7
+Internal Server Error (500) for request GET /
+
+Java exception (In /app/Bootstrap.java around line 13)
+RuntimeException occured : Cannot load fixture initial-data.yml: No previous reference found for object of type models.Question with id firstBobQuestion
+
+play.exceptions.JavaExecutionException: Cannot load fixture initial-data.yml: No previous reference found for object of type models.Question with id firstBobQuestion
+	at play.jobs.Job.call(Job.java:119)
+	at Invocation.Job(Play!)
+Caused by: java.lang.RuntimeException: Cannot load fixture initial-data.yml: No previous reference found for object of type models.Question with id firstBobQuestion
+	at play.test.Fixtures.load(Fixtures.java:199)
+	at Bootstrap.doJob(Bootstrap.java:13)
+	at play.jobs.Job.doJobWithResult(Job.java:37)
+	at play.jobs.Job.call(Job.java:110)
+	... 1 more
+Caused by: java.lang.RuntimeException: No previous reference found for object of type models.Question with id firstBobQuestion
+	at play.test.Fixtures.resolveDependencies(Fixtures.java:261)
+	at play.test.Fixtures.load(Fixtures.java:163)
+	... 4 more

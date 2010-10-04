@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+ 
+#{if frontQuestion}
+    
+    #{display question:frontQuestion, as:'home' /}
+    
+    #{if olderQuestions.size()}
+    
+        <div class="older-questions">
+            <h3>Older questions <span class="from">from this page</span></h3>
+        
+            #{list items:olderQuestions, as:'oldQuestion'}
+                #{display question:oldQuestion, as:'teaser' /}
+            #{/list}
+        </div>
+        
+    #{/if}
+    
+#{/if}
+ 
+#{else}
+    <div class="empty">
+        There is currently nothing to read here.
+    </div>
+#{/else}
