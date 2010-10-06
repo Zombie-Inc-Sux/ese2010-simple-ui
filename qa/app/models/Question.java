@@ -25,11 +25,8 @@ public class Question extends Model {
     @OneToMany(mappedBy="question", cascade=CascadeType.ALL)
     public List<Answer> answers;
     
-    @ManyToMany
-	public Set<User> upvotes;
-    
-    @ManyToMany
-	public Set<User> downvotes;
+    @OneToMany
+    public Map<User,QVote> votes;
 
     public Question(User author, String title, String content) {
         this.author = author;
@@ -37,8 +34,7 @@ public class Question extends Model {
         this.content = content;
         this.postedAt = new Date();
         this.answers = new ArrayList<Answer>();
-        this.upvotes = new HashSet<User>();
-        this.downvotes = new HashSet<User>();
+        this.votes = new HashMap<User,QVote>();
     }
     
     public Question addAnswer(User author, String content) {
@@ -56,22 +52,20 @@ public class Question extends Model {
         return Question.find("postedAt > ? order by postedAt asc", postedAt).first();
     }
 
-	public Question addVote(Vote vote,User user) {
-		user.save();
-		if (vote==Vote.UP){
-			this.downvotes.remove(user);
-			this.upvotes.add(user);
-		}
-		else {
-			this.upvotes.remove(user);
-			this.downvotes.add(user);
-		}
+	public Question addVote(int vote,User user) {
+		this.votes.remove(user);
+		QVote v = new QVote(user,this,vote);
+		v.save();
+		this.votes.put(user,v);
 		this.save();
 		return this;
 	}
 	
 	public int rating(){
-		int rating = this.upvotes.size()-this.downvotes.size();
-		return rating;
+		int rating = 0;
+		for (QVote vote : this.votes.values()){
+			rating += vote.vote;
+		}
+		return rating;	
 	}
 }

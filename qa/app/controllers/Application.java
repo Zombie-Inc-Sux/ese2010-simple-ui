@@ -48,10 +48,9 @@ public class Application extends Controller {
     	User user = Security.currentUser();
     	System.out.println("rated: " +vote+" by "+user.email);
     	Question question = Question.findById(postId);
-    	question.addVote(vote=="like"?Vote.UP:Vote.DOWN,user);
-    	System.out.println(question.downvotes.toString());
-    	System.out.println(question.upvotes.toString());
+    	question.addVote(vote=="like"?1:-1,user);
     	System.out.println(question.rating());
+    	System.out.println(question.votes.get(user).vote);
     	flash.success("Thanks for voting");
     	show(postId);
     }

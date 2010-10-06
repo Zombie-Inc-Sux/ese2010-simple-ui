@@ -22,11 +22,8 @@ public class Answer extends Model {
     @ManyToOne
     public Question question;
     
-    @ManyToMany
-	public Set<User> upvotes;
-    
-    @ManyToMany
-	public Set<User> downvotes;
+    @OneToMany(mappedBy="votee")
+    public Map<User,AVote> votes;
     
     public Answer(Question question, String email, String content) {
         this.question = question;
