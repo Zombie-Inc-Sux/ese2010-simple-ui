@@ -23,11 +23,14 @@ public class Answer extends Model {
     public Question question;
     
     @ManyToMany
-	public Map<User,Vote> votes;
+	public Set<User> upvotes;
     
-    public Answer(Question question, String author, String content) {
+    @ManyToMany
+	public Set<User> downvotes;
+    
+    public Answer(Question question, String email, String content) {
         this.question = question;
-        this.author = author;
+        this.author = email;
         this.content = content;
         this.postedAt = new Date();
     }

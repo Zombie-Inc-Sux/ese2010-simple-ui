@@ -12,6 +12,8 @@ import play.db.jpa.Model;
  */
 @Entity
 public class Vote extends Model{
-	static Vote UP= new Vote(),DOWN=new Vote();
+	
+	public static Vote UP= new Vote();
+	public static Vote DOWN=new Vote();
 }
 

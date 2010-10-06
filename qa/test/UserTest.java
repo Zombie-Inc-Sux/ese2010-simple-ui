@@ -85,8 +85,8 @@ public class UserTest extends UnitTest{
 	    Question markusQuestion = new Question(markus, "My first post", "Hello world").save();
 	 
 	    // Question a first comment
-	    markusQuestion.addAnswer("Jeff", "Nice post");
-	    markusQuestion.addAnswer("Tom", "I knew that !");
+	    markusQuestion.addAnswer(new User("j@eff.com", null, "Jeff"), "Nice post");
+	    markusQuestion.addAnswer(new User("t@eff.com", null, "Tom"), "I knew that !");
 	 
 	    // Count things
 	    assertEquals(1, User.count());

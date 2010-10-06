@@ -18,18 +18,25 @@ public class User extends Model {
 	    public String fullname;
 	    public boolean isAdmin;
 	    
+	    // this is 1:42AM stupid
 	    @ManyToMany
-		public List<Question> questionVotes;
+		public Set<Question> questionUpVotes;
+	    @ManyToMany
+		public Set<Question> questionDownVotes;
 	    
 	    @ManyToMany
-		public List<Answer> answerVotes;
+		public Set<Answer> answerUpVotes;
+	    @ManyToMany
+		public Set<Answer> answerDownVotes;
 	    
 	    public User(String email, String password, String fullname) {
 	    	this.email = email;
 	        this.password = password;
 	        this.fullname = fullname;
-	        this.questionVotes = new ArrayList();
-	        this.answerVotes = new ArrayList();
+	        this.questionUpVotes = new HashSet();
+	        this.questionDownVotes = new HashSet();
+	        this.answerUpVotes = new HashSet();
+	        this.answerDownVotes = new HashSet();
 	    }
 
 	    public static User connect(String email, String password) {

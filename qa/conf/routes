@@ -6,6 +6,7 @@
 GET     /                                       Application.index
 GET     /posts/{id}                             Application.show
 POST    /posts/{postId}/comments                Application.postComment
+POST	/posts/{postId}/rate					Application.rateQuestion
 
 
 # Map static resources from the /app/public folder to the /public path

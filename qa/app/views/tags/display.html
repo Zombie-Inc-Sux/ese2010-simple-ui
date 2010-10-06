@@ -27,6 +27,7 @@
  
 #{if _as == 'full'}
     <div class="answers">
+    <h3>Rated: ${_question.rating()}</h3>
         <h3>
             ${_question.answers.size() ?: 'no'} 
             answer${_question.answers.size().pluralize()}

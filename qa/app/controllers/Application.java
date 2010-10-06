@@ -21,7 +21,7 @@ public class Application extends Controller {
         Question frontQuestion = Question.find("order by postedAt desc").first();
         List<Question> olderQuestions = Question.find(
             "order by postedAt desc"
-        ).from(1).fetch(10);
+        ).from(1).fetch(9);
         render(frontQuestion, olderQuestions);
         String user = Security.connected();
         render(user);
@@ -32,14 +32,28 @@ public class Application extends Controller {
         render(question);
     }
     
-    public static void postAnswer(Long postId, @Required String author, @Required String content) {
+    public static void postAnswer(Long postId, @Required String content) {
         Question question = Question.findById(postId);
+        User author = Security.currentUser();
         if (validation.hasErrors()) {
             render("Application/show.html", question);
         }
         question.addAnswer(author, content);
-        flash.success("Thanks for posting %s", author);
+        flash.success("Thanks for posting %s", author.fullname);
         show(postId);
+    }
+    
+    public static void rateQuestion(Long postId){
+    	String vote = params.get("vote");
+    	User user = Security.currentUser();
+    	System.out.println("rated: " +vote+" by "+user.email);
+    	Question question = Question.findById(postId);
+    	question.addVote(vote=="like"?Vote.UP:Vote.DOWN,user);
+    	System.out.println(question.downvotes.toString());
+    	System.out.println(question.upvotes.toString());
+    	System.out.println(question.rating());
+    	flash.success("Thanks for voting");
+    	show(postId);
     }
  
 }
